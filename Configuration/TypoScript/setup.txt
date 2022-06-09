@@ -7,3 +7,5 @@ lib.parseFunc_HappyFeet {
     #we need to remove the wraping <p> because the content is rendered into a <sup> and typo3 will break the output if
     #we use a fluid viewhelper to render invalid html
 }
+
+page.includeJSFooter.happy_feet = EXT:happy_feet/Resources/Public/JavaScript/happy_feet.js
