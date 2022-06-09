@@ -55,6 +55,16 @@ class Footnote extends AbstractEntity
     protected $description;
 
     /**
+     * @var int
+     */
+    protected static $counter = 1;
+
+    /**
+     * @var array
+     */
+    protected static $counterMapping = [];
+
+    /**
      * @param string $description
      */
     public function setDescription($description)
@@ -99,7 +109,12 @@ class Footnote extends AbstractEntity
      */
     public function getIndexNumber()
     {
-        return $this->indexNumber;
+        if(!array_key_exists($this->uid, self::$counterMapping)){
+            self::$counterMapping[$this->uid] = self::$counter;
+            self::$counter++;
+        }
+
+        return self::$counterMapping[$this->uid];
     }
 
     /**
