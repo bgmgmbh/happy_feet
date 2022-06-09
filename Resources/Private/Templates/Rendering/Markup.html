@@ -2,21 +2,19 @@
 {namespace f=TYPO3Fluid\Fluid\ViewHelpers\HtmlViewHelper}
 <hf:flatify>
     <sup class="footnote" data-footnote="">
-        <a href="javascript:void(0)" class="footnote__link">
+        <a name="footnote-back-{footnotes.0.indexNumber}"></a>
+        <a href="#footnote-{footnotes.0.indexNumber}" class="footnote__link">
             <span class="footnote__index">
-                <f:for each="{footnotes}" as="footnote" iteration="iterator">
-                    {footnote.indexNumber}<f:if condition="{iterator.isLast} == 0">, </f:if>
-                </f:for>
+                {footnotes.0.indexNumber}
             </span>
             <span class="footnote__icon"></span>
         </a>
-        <span class="footnote__content">
-            <f:for each="{footnotes}" as="footnote">
-                <span class="footnote__content-index">{footnote.indexNumber}</span>
-                <span class="footnote__content-headline"
-                      data-footnote-index="{footnote.indexNumber}">{footnote.header}</span>
-                <span class="footnote__content-text"><f:format.html parseFuncTSPath="lib.parseFunc">{footnote.description}</f:format.html></span>
-            </f:for>
-        </span>
+        <div class="footnote__content">
+            <a name="footnote-{footnotes.0.indexNumber}"></a>
+            <span class="footnote__content-index"><a class="footnote__backlink" href="#footnote-back-{footnotes.0.indexNumber}">{footnotes.0.indexNumber}</a></span>
+            <span class="footnote__content-headline"
+                  data-footnote-index="{footnotes.0.indexNumber}">{footnotes.0.header}</span>
+            <span class="footnote__content-text"><f:format.html parseFuncTSPath="lib.parseFunc">{footnotes.0.description}</f:format.html></span>
+        </div>
     </sup>
 </hf:flatify>

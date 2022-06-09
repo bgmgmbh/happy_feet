@@ -55,6 +55,11 @@ class RenderingService implements SingletonInterface
     private $defaultTemplate = 'Markup';
 
     /**
+     * @var string
+     */
+    public static $footnoteContent = '';
+
+    /**
      * @param FootnoteRepository $footnoteRepository
      */
     public function __construct(FootnoteRepository $footnoteRepository)
@@ -87,7 +92,16 @@ class RenderingService implements SingletonInterface
 
         $view = $this->createView($templatePath);
         $view->assign('footnotes', $footnotes);
-        return $view->render();
+        $content = $view->render();
+
+        if(preg_match_all('/<div class="footnote__content">(.*)<\/div>/U', $content, $matches)){
+            foreach($matches[0] as $match){
+                self::$footnoteContent .= $match;
+                $content = str_replace($match, '', $content);
+            }
+        }
+
+        return $content;
     }
 
     /**

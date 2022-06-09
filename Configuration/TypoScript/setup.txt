@@ -8,4 +8,8 @@ lib.parseFunc_HappyFeet {
     #we use a fluid viewhelper to render invalid html
 }
 
-page.includeJSFooter.happy_feet = EXT:happy_feet/Resources/Public/JavaScript/happy_feet.js
+#page.includeJSFooter.happy_feet = EXT:happy_feet/Resources/Public/JavaScript/happy_feet.js
+
+lib.addFootnotes = USER
+lib.addFootnotes.userFunc = AOE\HappyFeet\UserFunc\AddFootnotesUserFunc->getContent
+lib.addFootnotes.stdWrap.wrap = <div id="footnote-container">|</div>
